@@ -10,7 +10,7 @@ This README documents the complete learning process, including challenges faced 
 
 ### Phase 1: Project Initialization
 
-** Decisions Made**
+**Decisions Made**
 - Used SQLite for lightweight relational storage
 - Structured project with separate DB utility layer
 - Adopted class-based design for table operations
@@ -19,25 +19,25 @@ This README documents the complete learning process, including challenges faced 
 
 ### Phase 2: Database Schema Design
 
-** Tables Designed**
+**Tables Designed**
 - Core entity tables with proper primary keys
 - Junction tables for many-to-many relationships
 
-** Error Faced**
+**Error Faced**
 ```
 sqlite3.OperationalError: incomplete input
 ```
 
-** Fix**
+**Fix**
 - Missing closing parenthesis in CREATE TABLE statement
 - Learned to inspect SQL carefully as SQLite error messages are minimal
 
-** Error Faced**
+**Error Faced**
 ```
 unknown column "Specialization_id" in foreign key definition
 ```
 
-** Fix**
+**Fix**
 - Column name and referenced primary key mismatch
 - Ensured foreign keys reference existing columns exactly
 
@@ -45,15 +45,15 @@ unknown column "Specialization_id" in foreign key definition
 
 ### Phase 3: CSV Data Handling
 
-** CSV Structure**
+**CSV Structure**
 - Multi-value columns stored as comma-separated strings
 - Example: `['Computer Vision', 'Image Processing']`
 
-** Problem**
+**Problem**
 - CSV values read as strings, not Python lists
 - Lost datatype information during CSV parsing
 
-** Fix**
+**Fix**
 - Implemented manual CSV string parsing
 - Split values before inserting into junction tables
 
@@ -61,12 +61,12 @@ unknown column "Specialization_id" in foreign key definition
 
 ### Phase 4: Data Insertion Logic
 
-** Error Faced**
+**Error Faced**
 ```
 sqlite3.IntegrityError: datatype mismatch
 ```
 
-** Fix**
+**Fix**
 - Ensured IDs are integers, not strings
 - Implemented `get_or_create()` logic for lookup tables
 - Insert values first, then retrieve IDs for foreign keys
@@ -76,12 +76,12 @@ sqlite3.IntegrityError: datatype mismatch
 
 ### Phase 5: Table Deletion & Recreation
 
-** Error Faced**
+**Error Faced**
 ```
 sqlite3.OperationalError: no such table
 ```
 
-** Fix**
+**Fix**
 - Used `DROP TABLE IF EXISTS` for safer cleanup
 - Ensured tables are created before any delete operations
 
@@ -90,16 +90,16 @@ sqlite3.OperationalError: no such table
 
 ### Phase 6: Python Code Quality
 
-** Error Faced**
+**Error Faced**
 ```
 PEP 8: E302 expected 2 blank lines
 ```
 
-** Learning**
+**Learning**
 - PEP 8 enforces Python code readability standards
 - Class and function definitions need proper spacing
 
-** Error Faced**
+**Error Faced**
 ```
 Parameter 'self' unfilled
 ```
@@ -109,16 +109,16 @@ Parameter 'self' unfilled
 
 ### Phase 7: Environment & Dependency Issues
 
-** Error Faced**
+**Error Faced**
 ```
 ModuleNotFoundError: No module named 'pandas.util'
 ```
 
-** Root Cause**
+**Root Cause**
 - Python interpreter mismatch
 - Corrupted or partial package installation
 
-** Fix**
+**Fix**
 - Verified interpreter path with `which python`
 - Reinstalled pandas using correct Python version
 - Checked installed packages with `python -m pip list`
@@ -128,12 +128,12 @@ ModuleNotFoundError: No module named 'pandas.util'
 
 ### Phase 8: FastAPI Setup
 
-** Error Faced**
+**Error Faced**
 ```
 Error loading ASGI app. Import string "FastAPI" must be in format "<module>:<attribute>"
 ```
 
-** Fix**
+**Fix**
 - Corrected Uvicorn command: `uvicorn main:app --reload`
 - Module name must match Python file name
 
@@ -141,11 +141,11 @@ Error loading ASGI app. Import string "FastAPI" must be in format "<module>:<att
 
 ### Phase 9: API Data Aggregation
 
-** Problem**
+**Problem**
 - SQL joins produced duplicate rows
 - One-to-many relationships flattened hierarchical data
 
-** Fix**
+**Fix**
 - Aggregated rows manually in Python
 - Converted relational tabular data into hierarchical JSON
 - Implemented proper grouping logic
@@ -154,9 +154,7 @@ Error loading ASGI app. Import string "FastAPI" must be in format "<module>:<att
 
 ### Phase 10: Version Control & Documentation
 
-** Decisions**
+**Decisions**
 - Added `requirements.txt` for dependency management
 - Learned `.env` is for environment variables, not Python packages
 - Structured README as both documentation and learning log
-
----
