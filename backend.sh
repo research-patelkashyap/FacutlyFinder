@@ -1,5 +1,5 @@
 echo "Running scraper..."
-python scrape/dau/main.py
+python -m scrape.dau.main
 
 echo "Initializing database..."
 python main.py
