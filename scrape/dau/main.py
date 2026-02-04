@@ -1,5 +1,5 @@
-from .faculty_url import facultyUrls
-from .faculty_details import facultyDetails
+from scrape.dau.faculty_url import facultyUrls
+from scrape.dau.faculty_details import facultyDetails
 import pandas as pd
 from pathlib import Path
 
