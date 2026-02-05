@@ -12,6 +12,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:8501",
+        "https://facutlyfinder-dduo.onrender.com"
     ],
     allow_credentials=True,
     allow_methods=["*"],
