@@ -1,8 +1,9 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, BackgroundTasks
 from fastapi.middleware.cors import CORSMiddleware
 from dbConnection.db_connection import SQLConnection as sc
 from dbOperations.get_data import GetData
 from contextlib import closing
+import subprocess
 
 app = FastAPI()
 
@@ -15,6 +16,22 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+def run_system_tasks():
+    try:
+        print("Running scraper...")
+        subprocess.run(["python", "-m", "scrape.dau.main"], check=True)
+        print("Tasks completed successfully!")
+
+        print("Initializing database...")
+        subprocess.run(["python", "main.py"], check=True)
+    except subprocess.CalledProcessError as e:
+        print(f"Error during tasks: {e}")
+
+@app.get("/run-tasks")
+def trigger_tasks(background_tasks: BackgroundTasks):
+    background_tasks.add_task(run_system_tasks)
+    return {"status": "Database init and Scraper started in the background."}
 
 @app.get("/faculty")
 def get_faculty_data():
