@@ -40,7 +40,7 @@ with st.sidebar:
     num_rec = st.slider("Number of recommendations", 1, 10, 5)
     find_btn = st.button("Find Matches", type="primary")
 
-recommender = FacultyRecommender("https://facutlyfinder-backend.onrender.com/faculty")
+recommender = FacultyRecommender("https://facutlyfinder-backend.onrender.com")
 data = recommender.fetch_data()
 
 if find_btn and user_input:
