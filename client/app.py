@@ -8,7 +8,7 @@ st.set_page_config(page_title="Faculty Matcher", layout="wide")
 class FacultyRecommender:
     def __init__(self, api_url):
         self.api_url = api_url
-        self.model = SentenceTransformer('paraphrase-MiniLM-L3-v2')
+        self.model = SentenceTransformer('paraphrase-MiniLM-L3-v2', device="cpu")
 
     def fetch_data(self):
         try:
