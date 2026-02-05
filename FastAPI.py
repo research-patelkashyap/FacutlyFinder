@@ -1,8 +1,10 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, BackgroundTasks, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from dbConnection.db_connection import SQLConnection as sc
 from dbOperations.get_data import GetData
 from contextlib import closing
+import subprocess
+import sys
 
 app = FastAPI()
 
@@ -10,6 +12,8 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:8501",
+        "https://facutlyfinder-dduo.onrender.com",
+        "https://facutlyfinder-5tnqrfu5mpkdwkvppg2f3x.streamlit.app"
     ],
     allow_credentials=True,
     allow_methods=["*"],
@@ -28,3 +32,7 @@ def get_faculty_data():
             data_getter = GetData(conn)
             data = data_getter.get_data()
     return {"data": data}
+
+@app.get("/")
+def read_root():
+    return {"status": "Server is running 🚀"}

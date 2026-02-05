@@ -8,7 +8,7 @@ st.set_page_config(page_title="Faculty Matcher", layout="wide")
 class FacultyRecommender:
     def __init__(self, api_url):
         self.api_url = api_url
-        self.model = SentenceTransformer('all-MiniLM-L6-v2')
+        self.model = SentenceTransformer('paraphrase-MiniLM-L3-v2', device="cpu")
 
     def fetch_data(self):
         try:
@@ -40,7 +40,7 @@ with st.sidebar:
     num_rec = st.slider("Number of recommendations", 1, 10, 5)
     find_btn = st.button("Find Matches", type="primary")
 
-recommender = FacultyRecommender("http://127.0.0.1:8000")
+recommender = FacultyRecommender("https://facutlyfinder-backend.onrender.com")
 data = recommender.fetch_data()
 
 if find_btn and user_input:
